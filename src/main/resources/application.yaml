@@ -1,0 +1,68 @@
+server:
+  port: 8080
+spring:
+  redis:
+    host: localhost
+    port: 6379
+    password: 123456
+    timeout: 5000
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/dula_template?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false&autoReconnect=true
+    username: root
+    password: 123456
+    hikari:
+      max-lifetime: 900000
+      idle-timeout: 600000
+      connection-test-query: select 1
+  flyway:
+    enabled: false
+  mail:
+    # 这里使用了qq邮箱，用其他的也可以，不用就注释掉再把EmailSender相关代码注释
+    host: smtp.qq.com
+    username: xxx@qq.com
+    password: xxx
+    properties:
+      mail:
+        smtp:
+          port: 465
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            enable: true
+    default-encoding: UTF-8
+mybatis-flex:
+  global-config:
+    print-banner: false
+logging:
+  level:
+    com.crud: debug
+# 这里配置微信小程序 不用就注释
+# 可查阅相关文档 https://github.com/Wechat-Group/WxJava
+wx:
+  miniapp:
+    appid: wx123456
+    secret: secret123456
+    config-storage:
+      type: RedisTemplate
+      key-prefix: wx-miniapp
+      redis:
+        host: localhost
+        port: 6379
+        password: 123456
+
+dula:
+  # 单会话登录
+  single-active-session: false
+  security:
+    # 放行url
+    permitAllUrls: /sys/wechat/login, /sys/web/login, /sys/user/password-init, /doc.html, /webjars/**, /v2/**, /swagger-resources/**, /sys/user/send-verification-code, /sys/user/password-reset-byCode
+  api:
+    # 在线接口文档
+    online-file: true
+  uploader:
+    # 默认上传配置 使用nginx做静态资源服务器
+    default:
+      urlPrefix: http://localhost:8088/
+      storagePath: /D:/nginx/data/
