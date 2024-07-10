@@ -18,6 +18,7 @@ public enum ResultCode {
 
     DATA_EXIST(100004L, "数据已存在"),
 
+    PARAM_ERROR(100005L, "参数错误"),
 
     USER_NOT_EXIST(200001L, "用户/密码输入错误"),
 

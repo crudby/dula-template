@@ -22,7 +22,7 @@ public class SysUserGroupServiceImpl extends BaseServiceImpl<SysUserGroupMapper,
     @Override
     @Transactional
     public void config(Long userId, List<Long> groupIds) {
-        this.remove(QueryWrapper.create().where(SysUserGroupTable.SYS_USER_GROUP.USER_ID.eq(userId)));
+        this.physicalRemove(QueryWrapper.create().where(SysUserGroupTable.SYS_USER_GROUP.USER_ID.eq(userId)));
         if (groupIds != null && !groupIds.isEmpty()) {
             groupIds.forEach(groupId -> {
                 SysUserGroup sysUserGroup = new SysUserGroup();

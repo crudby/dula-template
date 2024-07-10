@@ -1,6 +1,7 @@
 package com.crud.dula.common.result;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -49,6 +50,9 @@ public class GlobalExceptionHandler {
                 // 密码过期
                 return HttpResult.fail(ResultCode.USER_CREDENTIALS_EXPIRED);
             }
+        }
+        if (e instanceof HttpMessageNotReadableException) {
+            return HttpResult.fail(ResultCode.PARAM_ERROR);
         }
         return HttpResult.fail(ResultCode.SYSTEM_ERROR);
     }

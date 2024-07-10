@@ -6,8 +6,8 @@ import com.mybatisflex.core.table.TableDef;
 /**
  * 角色信息 表定义层。
  *
- * @author crud
- * @since 2024-05-16
+ * @author changl
+ * @since 2024-07-09
  */
 public class SysRoleTable extends TableDef {
 
@@ -47,6 +47,11 @@ public class SysRoleTable extends TableDef {
     public final QueryColumn ROLE_CODE = new QueryColumn(this, "role_code");
 
     /**
+     * 角色icon
+     */
+    public final QueryColumn ROLE_ICON = new QueryColumn(this, "role_icon");
+
+    /**
      * 角色名称
      */
     public final QueryColumn ROLE_NAME = new QueryColumn(this, "role_name");
@@ -74,7 +79,7 @@ public class SysRoleTable extends TableDef {
     /**
      * 默认字段，不包含逻辑删除或者 large 等字段。
      */
-    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{ID, ROLE_NAME, ROLE_CODE, ENABLED, DELETED, CREATE_TIME, CREATOR, REVISE_TIME, REVISER, TENANT_ID};
+    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{ID, ROLE_NAME, ROLE_CODE, ROLE_ICON, ENABLED, DELETED, CREATE_TIME, CREATOR, REVISE_TIME, REVISER, TENANT_ID};
 
     public SysRoleTable() {
         super("", "sys_role");

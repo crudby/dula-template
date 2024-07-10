@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author crud
@@ -37,6 +38,12 @@ public class SysRoleVO {
      */
     @ApiModelProperty("是否启用，0：否，1：是")
     private Boolean enabled;
+
+    /**
+     * 菜单列表
+     */
+    @ApiModelProperty("菜单列表")
+    private List<Long> menuList;
 
     /**
      * 创建者

@@ -23,7 +23,7 @@ public class SysUserRoleServiceImpl extends BaseServiceImpl<SysUserRoleMapper, S
     @Override
     @Transactional
     public void config(Long userId, List<Long> roleIds) {
-        this.remove(QueryWrapper.create().where(SysUserRoleTable.SYS_USER_ROLE.USER_ID.eq(userId)));
+        this.physicalRemove(QueryWrapper.create().where(SysUserRoleTable.SYS_USER_ROLE.USER_ID.eq(userId)));
         if (roleIds != null && !roleIds.isEmpty()) {
             roleIds.forEach(roleId -> {
                 SysUserRole sysUserRole = new SysUserRole();

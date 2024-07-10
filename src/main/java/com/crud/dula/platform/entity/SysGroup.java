@@ -26,6 +26,11 @@ public class SysGroup extends BaseEntity {
     private Long parentId;
 
     /**
+     * 组织icon
+     */
+    private String groupIcon;
+
+    /**
      * 组织名称
      */
     private String groupName;

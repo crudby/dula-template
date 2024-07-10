@@ -31,6 +31,11 @@ public class SysRole extends BaseEntity {
     private String roleCode;
 
     /**
+     * 角色icon
+     */
+    private String roleIcon;
+
+    /**
      * 是否启用，0：否，1：是
      */
     private Boolean enabled;

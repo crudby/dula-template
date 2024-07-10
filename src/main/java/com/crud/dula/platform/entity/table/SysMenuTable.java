@@ -52,6 +52,11 @@ public class SysMenuTable extends TableDef {
     public final QueryColumn MENU_CODE = new QueryColumn(this, "menu_code");
 
     /**
+     * 菜单icon
+     */
+    public final QueryColumn MENU_ICON = new QueryColumn(this, "menu_icon");
+
+    /**
      * 菜单名称
      */
     public final QueryColumn MENU_NAME = new QueryColumn(this, "menu_name");
@@ -84,7 +89,7 @@ public class SysMenuTable extends TableDef {
     /**
      * 默认字段，不包含逻辑删除或者 large 等字段。
      */
-    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{ID, PARENT_ID, MENU_NAME, MENU_CODE, MENU_URL, ENABLED, DELETED, CREATE_TIME, CREATOR, REVISE_TIME, REVISER, TENANT_ID};
+    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{ID, PARENT_ID, MENU_ICON, MENU_NAME, MENU_CODE, MENU_URL, ENABLED, DELETED, CREATE_TIME, CREATOR, REVISE_TIME, REVISER, TENANT_ID};
 
     public SysMenuTable() {
         super("", "sys_menu");

@@ -57,6 +57,11 @@ public class SysGroupTable extends TableDef {
     public final QueryColumn GROUP_CODE = new QueryColumn(this, "group_code");
 
     /**
+     * 组织icon
+     */
+    public final QueryColumn GROUP_ICON = new QueryColumn(this, "group_icon");
+
+    /**
      * 组织名称
      */
     public final QueryColumn GROUP_NAME = new QueryColumn(this, "group_name");
@@ -79,7 +84,7 @@ public class SysGroupTable extends TableDef {
     /**
      * 默认字段，不包含逻辑删除或者 large 等字段。
      */
-    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{ID, PARENT_ID, GROUP_NAME, GROUP_CODE, ENABLED, DELETED, CREATE_TIME, CREATOR, REVISE_TIME, REVISER, TENANT_ID};
+    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{ID, PARENT_ID, GROUP_ICON, GROUP_NAME, GROUP_CODE, ENABLED, DELETED, CREATE_TIME, CREATOR, REVISE_TIME, REVISER, TENANT_ID};
 
     public SysGroupTable() {
         super("", "sys_group");

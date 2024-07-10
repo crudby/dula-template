@@ -1,6 +1,8 @@
 package com.crud.dula.common.base;
 
+import com.mybatisflex.core.logicdelete.LogicDeleteManager;
 import com.mybatisflex.core.paginate.Page;
+import com.mybatisflex.core.query.QueryCondition;
 import com.mybatisflex.core.query.QueryOrderBy;
 import com.mybatisflex.core.query.QueryWrapper;
 import com.mybatisflex.core.service.IService;
@@ -35,6 +37,18 @@ public interface BaseService<T extends BaseEntity, Query extends BaseQuery> exte
             wrapper.and(BaseEntityTable.BASE_ENTITY_TABLE.CREATE_TIME.le(query.getReviseEndTime()));
         }
         return wrapper;
+    }
+
+    default void physicalRemove(QueryCondition condition) {
+        LogicDeleteManager.execWithoutLogicDelete(() -> {
+            this.remove(condition);
+        });
+    }
+
+    default void physicalRemove(QueryWrapper wrapper) {
+        LogicDeleteManager.execWithoutLogicDelete(() -> {
+            this.remove(wrapper);
+        });
     }
 
     List<T> list(Query query);

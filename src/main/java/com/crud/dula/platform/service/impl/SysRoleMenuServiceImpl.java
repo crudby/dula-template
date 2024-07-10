@@ -6,7 +6,6 @@ import com.crud.dula.platform.entity.SysRoleMenu;
 import com.crud.dula.platform.entity.table.SysRoleMenuTable;
 import com.crud.dula.platform.mapper.SysRoleMenuMapper;
 import com.crud.dula.platform.service.SysRoleMenuService;
-import com.mybatisflex.core.query.QueryWrapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +21,7 @@ public class SysRoleMenuServiceImpl extends BaseServiceImpl<SysRoleMenuMapper, S
     @Override
     @Transactional
     public void config(Long roleId, List<Long> menuIds) {
-        this.remove(QueryWrapper.create().where(SysRoleMenuTable.SYS_ROLE_MENU.ROLE_ID.eq(roleId)));
+        this.physicalRemove(SysRoleMenuTable.SYS_ROLE_MENU.ROLE_ID.eq(roleId));
         if (menuIds != null && !menuIds.isEmpty()) {
             menuIds.forEach(menuId -> {
                 SysRoleMenu sysRoleMenu = new SysRoleMenu();

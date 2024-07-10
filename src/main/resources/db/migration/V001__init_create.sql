@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS `sys_user` (
 CREATE TABLE IF NOT EXISTS `sys_group` (
   `id` BIGINT(20) NOT NULL COMMENT '主键',
   `parent_id` BIGINT(20) NOT NULL DEFAULT '0' COMMENT '父级ID',
+  `group_icon` VARCHAR(40) DEFAULT NULL COMMENT '组织icon',
   `group_name` VARCHAR(40) NOT NULL COMMENT '组织名称',
   `group_code` VARCHAR(20) NOT NULL COMMENT '组织编码',
   `enabled` tinyint(1) NOT NULL DEFAULT 1 COMMENT '是否启用，0：否，1：是',
@@ -57,6 +58,7 @@ CREATE TABLE IF NOT EXISTS `sys_role` (
   `id` BIGINT(20) NOT NULL COMMENT '主键',
   `role_name` VARCHAR(40) NOT NULL COMMENT '角色名称',
   `role_code` VARCHAR(20) NOT NULL COMMENT '角色编码',
+  `role_icon` VARCHAR(40) DEFAULT NULL COMMENT '角色icon',
   `enabled` tinyint(1) NOT NULL DEFAULT 1 COMMENT '是否启用，0：否，1：是',
   `deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否删除，0：否，1：是',
   `create_time` datetime NOT NULL COMMENT '创建时间',
@@ -85,9 +87,10 @@ CREATE TABLE IF NOT EXISTS `sys_user_role` (
 CREATE TABLE IF NOT EXISTS `sys_menu` (
   `id` BIGINT(20) NOT NULL COMMENT '主键',
   `parent_id` BIGINT(20) NOT NULL DEFAULT '0' COMMENT '父级ID',
+  `menu_icon` VARCHAR(40) DEFAULT NULL COMMENT '菜单icon',
   `menu_name` VARCHAR(40) NOT NULL COMMENT '菜单名称',
   `menu_code` VARCHAR(20) NOT NULL COMMENT '菜单编码',
-  `menu_url` VARCHAR(20) NOT NULL COMMENT '菜单路径',
+  `menu_url` VARCHAR(80) DEFAULT NULL COMMENT '菜单路径',
   `enabled` tinyint(1) NOT NULL DEFAULT 1 COMMENT '是否启用，0：否，1：是',
   `deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否删除，0：否，1：是',
   `create_time` datetime NOT NULL COMMENT '创建时间',
