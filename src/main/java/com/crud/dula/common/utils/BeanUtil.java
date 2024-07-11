@@ -1,15 +1,22 @@
 package com.crud.dula.common.utils;
 
 import com.crud.dula.common.result.BizException;
+import com.crud.dula.common.result.ResultCode;
 import com.mybatisflex.core.paginate.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.function.BiConsumer;
+import java.util.stream.Collectors;
 
 /**
  * @author crud
@@ -17,6 +24,34 @@ import java.util.function.BiConsumer;
  */
 @Slf4j
 public class BeanUtil {
+
+    private static volatile Validator validator;
+
+    public static Validator getValidator() {
+        if (validator == null) {
+            synchronized (BeanUtil.class) {
+                if (validator == null) {
+                    ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
+                    validator = validatorFactory.getValidator();
+                    validatorFactory.close();
+                }
+            }
+        }
+        return validator;
+    }
+
+    /**
+     * 校验参数是否合法
+     *
+     * @param t 参数对象
+     */
+    public static <T> void checkParamsValid(T t) {
+        Set<ConstraintViolation<T>> violations = getValidator().validate(t);
+        if (Objects.nonNull(violations) && !violations.isEmpty()) {
+            String message = violations.stream().map(ConstraintViolation::getMessage).collect(Collectors.joining(","));
+            throw new BizException(ResultCode.PARAM_ERROR.code, message);
+        }
+    }
 
     /**
      * 将对象转换为指定类型的实例。

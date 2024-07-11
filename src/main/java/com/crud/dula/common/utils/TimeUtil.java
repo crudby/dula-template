@@ -1,7 +1,9 @@
 package com.crud.dula.common.utils;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -34,6 +36,26 @@ public class TimeUtil {
      * 默认年份格式字符串。
      */
     public static final String DEFAULT_YEAR_FORMAT = "yyyy";
+
+    /**
+     * 将LocalDateTime转换为时间戳。
+     *
+     * @param localDateTime 要转换的LocalDateTime对象。
+     * @return 转换后的时间戳。
+     */
+    public static Long toEpochMilli(LocalDateTime localDateTime) {
+        return localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+    }
+
+    /**
+     * 使用默认日期时间格式解析时间戳为LocalDateTime。
+     *
+     * @param time 待解析的时间。
+     * @return 解析后的LocalDateTime对象。
+     */
+    public static LocalDateTime parse(Long time) {
+        return Instant.ofEpochMilli(time).atZone(ZoneId.systemDefault()).toLocalDateTime();
+    }
 
     /**
      * 使用默认日期时间格式解析字符串为LocalDateTime。
